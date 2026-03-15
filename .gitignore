@@ -1,0 +1,7 @@
+# Logs
+firebase-debug.log
+*.log
+
+# Firebase/IDX artifacts
+.idx/
+.firebase/

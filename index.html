@@ -1,14 +1,35 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hello World</title>
-  <link href='/style.css' rel='stylesheet'>
-</head>
-<body>
-  <h1>Hello, world!</h1>
-  <button onclick="console.log('hello');">Press me</button>
-  <script defer type="text/javascript" src="/main.js"></script>
-</body>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>사주풀이 앱</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <h1>사주풀이</h1>
+
+    <div id="auth-container">
+      <h2>로그인 또는 회원가입</h2>
+      <form id="register-form">
+        <h3>회원가입</h3>
+        <input type="email" id="register-email" placeholder="이메일" required>
+        <input type="password" id="register-password" placeholder="비밀번호" required>
+        <button type="submit">가입</button>
+      </form>
+      <form id="login-form">
+        <h3>로그인</h3>
+        <input type="email" id="login-email" placeholder="이메일" required>
+        <input type="password" id="login-password" placeholder="비밀번호" required>
+        <button type="submit">로그인</button>
+      </form>
+      <button id="logout-button" style="display: none;">로그아웃</button>
+    </div>
+
+    <div id="user-status"></div>
+
+    <script src="/__/firebase/12.10.0/firebase-app-compat.js"></script>
+    <script src="/__/firebase/12.10.0/firebase-auth-compat.js"></script>
+    <script src="main.js"></script>
+  </body>
 </html>
