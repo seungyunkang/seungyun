@@ -1,35 +1,79 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>사주풀이 앱</title>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>프리미엄 사주풀이</title>
     <link rel="stylesheet" href="style.css">
-  </head>
-  <body>
-    <h1>사주풀이</h1>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>✨ 프리미엄 사주풀이</h1>
+            <div id="user-status" class="status-bar">로그인이 필요합니다.</div>
+        </header>
 
-    <div id="auth-container">
-      <h2>로그인 또는 회원가입</h2>
-      <form id="register-form">
-        <h3>회원가입</h3>
-        <input type="email" id="register-email" placeholder="이메일" required>
-        <input type="password" id="register-password" placeholder="비밀번호" required>
-        <button type="submit">가입</button>
-      </form>
-      <form id="login-form">
-        <h3>로그인</h3>
-        <input type="email" id="login-email" placeholder="이메일" required>
-        <input type="password" id="login-password" placeholder="비밀번호" required>
-        <button type="submit">로그인</button>
-      </form>
-      <button id="logout-button" style="display: none;">로그아웃</button>
+        <main>
+            <!-- Auth Section -->
+            <section id="auth-section" class="card">
+                <div id="auth-forms">
+                    <div class="tabs">
+                        <button id="tab-login" class="tab-btn active">로그인</button>
+                        <button id="tab-register" class="tab-btn">회원가입</button>
+                    </div>
+
+                    <form id="login-form" class="auth-form">
+                        <input type="email" id="login-email" placeholder="이메일 주소" required>
+                        <input type="password" id="login-password" placeholder="비밀번호" required>
+                        <button type="submit" class="primary-btn">로그인</button>
+                    </form>
+
+                    <form id="register-form" class="auth-form" style="display: none;">
+                        <input type="email" id="register-email" placeholder="이메일 주소" required>
+                        <input type="password" id="register-password" placeholder="비밀번호" required>
+                        <button type="submit" class="secondary-btn">가입하기</button>
+                    </form>
+                </div>
+                <button id="logout-button" class="outline-btn" style="display: none;">로그아웃</button>
+            </section>
+
+            <!-- Fortune Input Section (Visible only when logged in) -->
+            <section id="fortune-section" class="card" style="display: none;">
+                <h2>생년월일 입력</h2>
+                <div class="input-group">
+                    <input type="number" id="year" placeholder="년 (YYYY)" min="1900" max="2100">
+                    <input type="number" id="month" placeholder="월 (MM)" min="1" max="12">
+                    <input type="number" id="day" placeholder="일 (DD)" min="1" max="31">
+                </div>
+                <div class="input-group">
+                    <input type="number" id="hour" placeholder="시 (0-23)" min="0" max="23">
+                    <input type="number" id="minute" placeholder="분 (0-59)" min="0" max="59">
+                </div>
+                <button id="submit" class="primary-btn">사주풀이 보기</button>
+
+                <div id="result-container" class="result-box" style="display: none;">
+                    <h3>전반적인 운세</h3>
+                    <p id="general-reading"></p>
+                    
+                    <div class="luck-grid">
+                        <button class="luck-option" data-luck="health">건강운</button>
+                        <button class="luck-option" data-luck="wealth">재물운</button>
+                        <button class="luck-option" data-luck="marriage">결혼운</button>
+                        <button class="luck-option" data-luck="children">자식운</button>
+                        <button class="luck-option" data-luck="promotion">승진운</button>
+                        <button class="luck-option" data-luck="business">사업운</button>
+                    </div>
+                    <div id="detailed-reading" class="detailed-box"></div>
+                </div>
+            </section>
+        </main>
     </div>
 
-    <div id="user-status"></div>
-
+    <!-- Firebase SDKs -->
     <script src="/__/firebase/12.10.0/firebase-app-compat.js"></script>
     <script src="/__/firebase/12.10.0/firebase-auth-compat.js"></script>
+    <script src="/__/firebase/init.js"></script>
     <script src="main.js"></script>
-  </body>
+</body>
 </html>
