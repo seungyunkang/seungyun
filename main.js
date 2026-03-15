@@ -15,19 +15,21 @@ const tabLogin = document.getElementById('tab-login');
 const tabRegister = document.getElementById('tab-register');
 
 // Tab Switching Logic
-tabLogin.addEventListener('click', () => {
-    tabLogin.classList.add('active');
-    tabRegister.classList.remove('active');
-    loginForm.style.display = 'block';
-    registerForm.style.display = 'none';
-});
+if (tabLogin && tabRegister) {
+    tabLogin.addEventListener('click', () => {
+        tabLogin.classList.add('active');
+        tabRegister.classList.remove('active');
+        loginForm.style.display = 'block';
+        registerForm.style.display = 'none';
+    });
 
-tabRegister.addEventListener('click', () => {
-    tabRegister.classList.add('active');
-    tabLogin.classList.remove('active');
-    registerForm.style.display = 'block';
-    loginForm.style.display = 'none';
-});
+    tabRegister.addEventListener('click', () => {
+        tabRegister.classList.add('active');
+        tabLogin.classList.remove('active');
+        registerForm.style.display = 'block';
+        loginForm.style.display = 'none';
+    });
+}
 
 // Helper to toggle visibility based on auth state
 const updateUI = (user) => {
@@ -41,7 +43,9 @@ const updateUI = (user) => {
         logoutButton.style.display = 'none';
         fortuneSection.style.display = 'none';
         userStatus.textContent = '로그인이 필요합니다.';
-        document.getElementById('result-container').style.display = 'none';
+        if (document.getElementById('result-container')) {
+            document.getElementById('result-container').style.display = 'none';
+        }
     }
 };
 
@@ -90,23 +94,26 @@ logoutButton.addEventListener('click', () => {
 });
 
 // Fortune-telling logic
-document.getElementById('submit').addEventListener('click', () => {
-    const year = document.getElementById('year').value;
-    const month = document.getElementById('month').value;
-    const day = document.getElementById('day').value;
+const submitBtn = document.getElementById('submit');
+if (submitBtn) {
+    submitBtn.addEventListener('click', () => {
+        const year = document.getElementById('year').value;
+        const month = document.getElementById('month').value;
+        const day = document.getElementById('day').value;
 
-    if (!year || !month || !day) {
-        alert('생년월일을 모두 입력해주세요.');
-        return;
-    }
+        if (!year || !month || !day) {
+            alert('생년월일을 모두 입력해주세요.');
+            return;
+        }
 
-    const resultContainer = document.getElementById('result-container');
-    const generalReading = document.getElementById('general-reading');
-    
-    resultContainer.style.display = 'block';
-    generalReading.textContent = `${year}년 ${month}월 ${day}일생의 타고난 사주는 맑고 강인한 기운을 가지고 있습니다. 올해는 특히 새로운 시작과 성장이 기대되는 해입니다.`;
-    document.getElementById('detailed-reading').textContent = '아래 버튼을 눌러 더 자세한 운세를 확인해보세요.';
-});
+        const resultContainer = document.getElementById('result-container');
+        const generalReading = document.getElementById('general-reading');
+        
+        resultContainer.style.display = 'block';
+        generalReading.textContent = `${year}년 ${month}월 ${day}일생의 타고난 사주는 맑고 강인한 기운을 가지고 있습니다. 올해는 특히 새로운 시작과 성장이 기대되는 해입니다.`;
+        document.getElementById('detailed-reading').textContent = '아래 버튼을 눌러 더 자세한 운세를 확인해보세요.';
+    });
+}
 
 document.querySelectorAll('.luck-option').forEach(button => {
     button.addEventListener('click', (event) => {
